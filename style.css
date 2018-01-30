@@ -5,6 +5,8 @@ body {
 h1 {
 	color: white !important;
 	font-family: 'Heebo', sans-serif;
+	text-decoration: underline;
+	text-decoration-color: #ffff99;
 }
 
 .categories {
@@ -20,11 +22,15 @@ h1 {
 
 .gifs {
 	float: left;
-	margin: 10px;
+	margin: 12px;
 	border-style: solid;
-	color: white;
+	border-color: black;
+	border-radius: 10px;
+	color: black;
 	text-align: center;
 	font-family: 'Heebo', sans-serif;
+	background: linear-gradient(to right, #ffff99, #666633);
+	padding: 5px 0 0 0;
 }
 
 #newCategoryForm {
@@ -34,10 +40,26 @@ h1 {
 
 #gifSection {
 	width: 95%;
+	border-left: solid;
+	border-color: silver;
+
 }
 
 button {
 	background-color: white;
 	font-family: 'Gloria Hallelujah', cursive;
 	color: black;
+}
+
+#buttons {
+	border-bottom: solid;
+	border-color: black;
+	margin-bottom: 20px;
+	width: 75$;
+}
+
+#footer {
+	margin-top: 20px;
+	color: white;
+	font-size: 75%;
 }

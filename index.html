@@ -23,12 +23,19 @@
 
     <div id="gifSection"></div>
 
+    <div>
+		<footer class="col-md-12 col-lg-12 col-sm-12 col-xs-12 text-center navbar-fixed-bottom" id="footer">
+			Copyright @ 2018 - Samuel Mast
+			<p>powered by GIPHY</p>
+		</footer>
+	</div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
 
     	$(document).ready(function() {
 
-    		var categories = ["SMH", "Nailed it", "Annoyed", "Meh", "Eww", "Hungry"];
+    		var categories = ["SMH", "Sneaky", "Annoyed", "Meh", "Eww", "Hungry"];
     		var still = "";
     		var animated = "";
 
@@ -52,7 +59,7 @@
     		function displayGIFs() {
         		
         		var category = $(this).attr("data-name");
-    			var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + category + "&api_key=QRf5hZNE1xbTrnBp59xlbz68OTsZeXRW";
+    			var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + category + "&api_key=QRf5hZNE1xbTrnBp59xlbz68OTsZeXRW&limit=10";
 
 		    	$("#gifSection").empty();
 
@@ -82,30 +89,6 @@
 		    			$("#gifSection").append(GIFdiv);
 
 		    		}
-
-		    		// $("#gifSection").on("click", ".gifs", function(event) {
-		      // 			console.log(this);
-
-		      // 			var state = $(this).attr("state");
-		      // 			var stillURL = $(this).attr("still");
-		      // 			var animatedURL = $(this).attr("animated");
-
-
-		      // 			if (state === "still") {
-
-		      // 				$(this).attr("state", "animated");
-		      // 				$(this).children("img").attr("src", animatedURL)
-
-
-		      // 			} else if (state === "animated") {
-
-		      // 				$(this).attr("state", "still");
-		      // 				$(this).children("img").attr("src", stillURL)
-
-		      // 			}
-
-
-      		// 		});
 
 
 		    	});
