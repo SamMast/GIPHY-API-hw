@@ -1,0 +1,43 @@
+body {
+	background-image: url("http://www.designyourway.net/diverse/darkpat/COLOURlovers.com-Background1.jpg");
+}
+
+h1 {
+	color: white !important;
+	font-family: 'Heebo', sans-serif;
+}
+
+.categories {
+	height: 50px;
+	width: 100px;
+	margin: 10px;
+}
+
+#add-category {
+	display: inline-block;
+	margin: auto;
+}
+
+.gifs {
+	float: left;
+	margin: 10px;
+	border-style: solid;
+	color: white;
+	text-align: center;
+	font-family: 'Heebo', sans-serif;
+}
+
+#newCategoryForm {
+	margin: 25px 0 0 0;
+	font-family: 'Heebo', sans-serif;
+}
+
+#gifSection {
+	width: 95%;
+}
+
+button {
+	background-color: white;
+	font-family: 'Gloria Hallelujah', cursive;
+	color: black;
+}

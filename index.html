@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  	<meta charset="utf-8">
+  	<title>Favorite Movies</title>
+	<link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Heebo:400,700" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+
+  <div class="container">
+    <h1 class="row col-xs-12 col-sm-12 col-md-9 col-lg-9">Reaction GIF Search</h1>
+
+    <form id="newCategoryForm" class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+      <input type="text" id="category-input" placeholder="Add a Category">
+      <input id="add-category" type="submit" value="Add">
+    </form>
+
+    <div id="buttons" class="col-sm-12 col-xs-12 col-lg-12 col-md-12"></div>
+
+    <div id="gifSection"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+
+    	$(document).ready(function() {
+
+    		var categories = ["SMH", "Nailed it", "Annoyed", "Meh", "Eww", "Hungry"];
+    		var still = "";
+    		var animated = "";
+
+    		function createButtons() {
+
+		        $("#buttons").empty();
+
+		        for (var i = 0; i < categories.length; i++) {
+
+		          var newButton = $("<button>");
+		          newButton.addClass("categories");
+		          newButton.attr("data-name", categories[i]);
+		          newButton.text(categories[i]);
+		          $("#buttons").append(newButton);
+
+		        }
+    		}
+
+    		createButtons();
+
+    		function displayGIFs() {
+        		
+        		var category = $(this).attr("data-name");
+    			var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + category + "&api_key=QRf5hZNE1xbTrnBp59xlbz68OTsZeXRW";
+
+		    	$("#gifSection").empty();
+
+		    	$.ajax({
+		    		url: queryURL,
+		    		method: "GET"
+		    	}).then(function(response) {
+		    		console.log(response);
+
+		    		for (var i = 0; i < response.data.length; i++) {
+		    			var GIFdiv = $("<div class='gifs'>");
+
+		    			var x = response.data[i].rating.toUpperCase();
+
+		    			var rating = ("<p>Rating: " + x + "</p>");
+		    			still = response.data[i].images.fixed_height_still.url;
+		    			animated = response.data[i].images.fixed_height.url;
+		    			var image = $("<img src='" + still + "'/>");
+
+		    			GIFdiv.append(image);
+		    			GIFdiv.prepend(rating);
+		    			GIFdiv.attr("state", "still");
+		    			GIFdiv.attr("still", still);
+		    			GIFdiv.attr("animated", animated);
+
+
+		    			$("#gifSection").append(GIFdiv);
+
+		    		}
+
+		    		// $("#gifSection").on("click", ".gifs", function(event) {
+		      // 			console.log(this);
+
+		      // 			var state = $(this).attr("state");
+		      // 			var stillURL = $(this).attr("still");
+		      // 			var animatedURL = $(this).attr("animated");
+
+
+		      // 			if (state === "still") {
+
+		      // 				$(this).attr("state", "animated");
+		      // 				$(this).children("img").attr("src", animatedURL)
+
+
+		      // 			} else if (state === "animated") {
+
+		      // 				$(this).attr("state", "still");
+		      // 				$(this).children("img").attr("src", stillURL)
+
+		      // 			}
+
+
+      		// 		});
+
+
+		    	});
+
+    		}
+
+    		$("#add-category").on("click", function(event) {
+
+		        event.preventDefault();
+		        var newCategory = $("#category-input").val().trim();
+		        categories.push(newCategory);
+		        createButtons();
+
+		    });
+
+
+      		$("#buttons").on("click", ".categories", displayGIFs);
+
+
+		    $("#gifSection").on("click", ".gifs", function(event) {
+		    	console.log(this);
+
+		      	var state = $(this).attr("state");
+		      	var stillURL = $(this).attr("still");
+		      	var animatedURL = $(this).attr("animated");
+
+
+		      	if (state === "still") {
+
+		      		$(this).attr("state", "animated");
+		      		$(this).children("img").attr("src", animatedURL)
+
+
+		      	} else if (state === "animated") {
+
+		      		$(this).attr("state", "still");
+		      		$(this).children("img").attr("src", stillURL)
+
+		      	}
+
+
+      		});
+
+    	});
+
+
+    </script>
+  </div>
+</body>
+
+</html>
