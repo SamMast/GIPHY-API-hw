@@ -3,7 +3,7 @@
 
 <head>
   	<meta charset="utf-8">
-  	<title>Favorite Movies</title>
+  	<title>GIF Search</title>
 	<link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Heebo:400,700" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="style.css">
@@ -12,11 +12,19 @@
 <body>
 
   <div class="container">
-    <h1 class="row col-xs-12 col-sm-12 col-md-9 col-lg-9">Reaction GIF Search</h1>
+    <h1 class="row col-xs-12 col-sm-12 col-md-5 col-lg-5">Reaction GIF Search</h1>
+    <p class="col-xs-12 col-sm-12 col-md-4 col-lg-4" id="description">
+    	<em>
+    	Search for your favorite reaction
+		</em>
+	</p>
 
     <form id="newCategoryForm" class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-      <input type="text" id="category-input" placeholder="Add a Category">
-      <input id="add-category" type="submit" value="Add">
+      <input type="text" id="category-input" placeholder="Add a Reaction">
+      <button  id="add-category" type="submit" value="Add">
+      	Add
+      	<div class="glyphicon glyphicon-sunglasses"></div>
+      </button>
     </form>
 
     <div id="buttons" class="col-sm-12 col-xs-12 col-lg-12 col-md-12"></div>
@@ -35,7 +43,7 @@
 
     	$(document).ready(function() {
 
-    		var categories = ["SMH", "Sneaky", "Annoyed", "Meh", "Eww", "Hungry"];
+    		var categories = ["SMH", "Crying", "Annoyed", "Meh", "Eww", "Hungry"];
     		var still = "";
     		var animated = "";
 
@@ -119,13 +127,13 @@
 		      	if (state === "still") {
 
 		      		$(this).attr("state", "animated");
-		      		$(this).children("img").attr("src", animatedURL)
+		      		$(this).children("img").attr("src", animatedURL);
 
 
 		      	} else if (state === "animated") {
 
 		      		$(this).attr("state", "still");
-		      		$(this).children("img").attr("src", stillURL)
+		      		$(this).children("img").attr("src", stillURL);
 
 		      	}
 
